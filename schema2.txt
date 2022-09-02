@@ -1,0 +1,288 @@
+{ {
+    _on_attach = <function 1>,
+    attached_buffers = {
+      [5] = true,
+      [10] = true,
+      [11] = true
+    },
+    cancel_request = <function 2>,
+    commands = {},
+    config = {
+      autostart = true,
+      capabilities = {
+        callHierarchy = {
+          dynamicRegistration = false
+        },
+        textDocument = {
+          codeAction = {
+            codeActionLiteralSupport = {
+              codeActionKind = {
+                valueSet = { "", "Empty", "QuickFix", "Refactor", "RefactorExtract", "RefactorInline", "RefactorRewrite", "Source", "SourceOrganizeImports", "quickfix", "refactor", "refactor.extract", "refactor.inline", "refactor.rewrite", "source", "source.organizeImports" }
+              }
+            },
+            dataSupport = true,
+            dynamicRegistration = false,
+            resolveSupport = {
+              properties = { "edit" }
+            }
+          },
+          completion = {
+            completionItem = {
+              commitCharactersSupport = false,
+              deprecatedSupport = false,
+              documentationFormat = { "markdown", "plaintext" },
+              preselectSupport = false,
+              snippetSupport = false
+            },
+            completionItemKind = {
+              valueSet = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25 }
+            },
+            contextSupport = false,
+            dynamicRegistration = false
+          },
+          declaration = {
+            linkSupport = true
+          },
+          definition = {
+            linkSupport = true
+          },
+          documentHighlight = {
+            dynamicRegistration = false
+          },
+          documentSymbol = {
+            dynamicRegistration = false,
+            hierarchicalDocumentSymbolSupport = true,
+            symbolKind = {
+              valueSet = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 }
+            }
+          },
+          hover = {
+            contentFormat = { "markdown", "plaintext" },
+            dynamicRegistration = false
+          },
+          implementation = {
+            linkSupport = true
+          },
+          publishDiagnostics = {
+            relatedInformation = true,
+            tagSupport = {
+              valueSet = { 1, 2 }
+            }
+          },
+          references = {
+            dynamicRegistration = false
+          },
+          rename = {
+            dynamicRegistration = false,
+            prepareSupport = true
+          },
+          signatureHelp = {
+            dynamicRegistration = false,
+            signatureInformation = {
+              activeParameterSupport = true,
+              documentationFormat = { "markdown", "plaintext" },
+              parameterInformation = {
+                labelOffsetSupport = true
+              }
+            }
+          },
+          synchronization = {
+            didSave = true,
+            dynamicRegistration = false,
+            willSave = false,
+            willSaveWaitUntil = false
+          },
+          typeDefinition = {
+            linkSupport = true
+          }
+        },
+        window = {
+          showDocument = {
+            support = false
+          },
+          showMessage = {
+            messageActionItem = {
+              additionalPropertiesSupport = false
+            }
+          },
+          workDoneProgress = true
+        },
+        workspace = {
+          applyEdit = true,
+          configuration = true,
+          symbol = {
+            dynamicRegistration = false,
+            hierarchicalWorkspaceSymbolSupport = true,
+            symbolKind = {
+              valueSet = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 }
+            }
+          },
+          workspaceEdit = {
+            resourceOperations = { "rename", "create", "delete" }
+          },
+          workspaceFolders = true
+        }
+      },
+      cmd = { "C:\\Windows\\system32\\cmd.exe", "/C", "lua-language-server" },
+      cmd_cwd = "C:/Users/BaraTudor/AppData/Local/nvim",
+      filetypes = { "lua" },
+      flags = {},
+      get_language_id = <function 3>,
+      handlers = <1>{},
+      init_options = vim.empty_dict(),
+      log_level = 2,
+      message_level = 2,
+      name = "sumneko_lua",
+      on_attach = <function 4>,
+      on_exit = <function 5>,
+      on_init = <function 6>,
+      root_dir = "C:/Users/BaraTudor/AppData/Local/nvim",
+      settings = {
+        Lua = {
+          completion = {
+            callSnippet = "Replace"
+          },
+          runtime = {
+            path = { "?.lua", "?/init.lua" },
+            version = "LuaJIT"
+          },
+          telemetry = {
+            enable = false
+          },
+          workspace = {
+            library = { "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\lua-dev.nvim\\types", "C:\\tools\\neovim\\nvim-win64\\share\\nvim\\runtime\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\aerial.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\alpha-nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\better-escape.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\bufdelete.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\cheatsheet.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\cmp-buffer\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\cmp-cmdline\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\cmp-cmdline-history\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\cmp-emoji\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\cmp-fuzzy-buffer\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\cmp-fuzzy-path\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\cmp-greek\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\cmp-nvim-lsp\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\cmp-nvim-lua\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\cmp-path\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\cmp_luasnip\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\Comment.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\dressing.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\feline.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\gitsigns.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\goto-preview\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\indent-blankline.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\indent-o-matic\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\lspkind.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\lua-dev.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\LuaSnip\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\mason-lspconfig.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\mason-tool-installer.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\neo-tree.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\neovim-session-manager\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\nui.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\null-ls.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\nvim-autopairs\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\nvim-cmp\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\nvim-colorizer.lua\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\nvim-notify\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\nvim-treesitter\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\nvim-treesitter-textobjects\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\nvim-ts-autotag\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\nvim-ts-context-commentstring\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\nvim-ts-rainbow\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\nvim-web-devicons\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\plenary.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\SchemaStore.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\smart-splits.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\tabby.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\telescope-fzf-native.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\telescope-packer.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\telescope.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\toggleterm.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\trim.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\which-key.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\catppuccin\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\cybu.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\fold-preview.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\fuzzy.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\gruvbox-flat.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\gruvbox-material\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\harpoon\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\hop.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\hydra.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\impatient.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\incline.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\JABS.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\kanagawa.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\keymap-amend.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\mason.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\neovim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nightfox.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-dap\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-dap-ui\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-lspconfig\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-neoclip.lua\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-regexplainer\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-scrollbar\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-surround\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-ufo\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\orgmode\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\packer.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\popup.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\promise-async\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\searchbox.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\stay-in-place.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\todo-comments.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\tokyonight.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\trouble.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\true-zen.nvim\\lua", "C:\\Users\\BaraTudor\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\winshift.nvim\\lua" },
+            maxPreload = 1000,
+            preloadFileSize = 150
+          }
+        }
+      },
+      single_file_support = true,
+      workspace_folders = <2>{ {
+          name = "C:/Users/BaraTudor/AppData/Local/nvim",
+          uri = "file:///C:/Users/BaraTudor/AppData/Local/nvim"
+        } },
+      <metatable> = <3>{
+        __tostring = <function 7>
+      }
+    },
+    handlers = <table 1>,
+    id = 1,
+    initialized = true,
+    is_stopped = <function 8>,
+    messages = {
+      messages = {},
+      name = "sumneko_lua",
+      progress = {
+        [7908] = {
+          message = "516/2050",
+          percentage = 25,
+          title = "Diagnosing workspace"
+        }
+      },
+      status = {}
+    },
+    name = "sumneko_lua",
+    notify = <function 9>,
+    offset_encoding = "utf-16",
+    request = <function 10>,
+    request_sync = <function 11>,
+    requests = {},
+    resolved_capabilities = {
+      call_hierarchy = false,
+      code_action = <4>{
+        codeActionKinds = { "", "quickfix", "refactor.rewrite", "refactor.extract" },
+        resolveProvider = false
+      },
+      code_lens = false,
+      code_lens_resolve = false,
+      completion = true,
+      declaration = false,
+      document_formatting = true,
+      document_highlight = true,
+      document_range_formatting = true,
+      document_symbol = true,
+      execute_command = true,
+      find_references = true,
+      goto_definition = true,
+      hover = true,
+      implementation = false,
+      rename = true,
+      signature_help = true,
+      signature_help_trigger_characters = <5>{ "(", "," },
+      text_document_did_change = 2,
+      text_document_open_close = true,
+      text_document_save = false,
+      text_document_save_include_text = false,
+      text_document_will_save = false,
+      text_document_will_save_wait_until = false,
+      type_definition = true,
+      workspace_folder_properties = {
+        changeNotifications = true,
+        supported = true
+      },
+      workspace_symbol = true
+    },
+    rpc = {
+      handle = <userdata 1>,
+      notify = <function 12>,
+      pid = 32112,
+      request = <function 13>
+    },
+    server_capabilities = {
+      codeActionProvider = <table 4>,
+      colorProvider = true,
+      completionProvider = {
+        resolveProvider = true,
+        triggerCharacters = { "\t", "\n", ".", ":", "(", "'", '"', "[", ",", "#", "*", "@", "|", "=", "-", "{", " ", "+", "?" }
+      },
+      definitionProvider = true,
+      documentFormattingProvider = true,
+      documentHighlightProvider = true,
+      documentOnTypeFormattingProvider = {
+        firstTriggerCharacter = "\n"
+      },
+      documentRangeFormattingProvider = true,
+      documentSymbolProvider = true,
+      executeCommandProvider = {
+        commands = { "lua.removeSpace", "lua.solve", "lua.jsonToLua", "lua.setConfig", "lua.autoRequire" }
+      },
+      foldingRangeProvider = true,
+      hoverProvider = true,
+      inlayHintProvider = {
+        resolveProvider = true
+      },
+      offsetEncoding = "utf-16",
+      referencesProvider = true,
+      renameProvider = {
+        prepareProvider = true
+      },
+      semanticTokensProvider = {
+        full = true,
+        legend = {
+          tokenModifiers = { "declaration", "definition", "readonly", "static", "deprecated", "abstract", "async", "modification", "documentation", "defaultLibrary" },
+          tokenTypes = { "namespace", "type", "class", "enum", "interface", "struct", "typeParameter", "parameter", "variable", "property", "enumMember", "event", "function", "method", "macro", "keyword", "modifier", "comment", "string", "number", "regexp", "operator", "decorator" }
+        },
+        range = true
+      },
+      signatureHelpProvider = {
+        triggerCharacters = <table 5>
+      },
+      textDocumentSync = {
+        change = 2,
+        openClose = true
+      },
+      typeDefinitionProvider = true,
+      workspace = {
+        workspaceFolders = {
+          changeNotifications = true,
+          supported = true
+        }
+      },
+      workspaceSymbolProvider = true
+    },
+    stop = <function 14>,
+    supports_method = <function 15>,
+    workspaceFolders = <table 2>,
+    workspace_did_change_configuration = <function 16>,
+    workspace_folders = <table 2>
+  } }
