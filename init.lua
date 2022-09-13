@@ -88,14 +88,14 @@ $	last	x-n	n before x
 _IsToggleQuickWords = true
 vim.api.nvim_create_user_command('ToggleInnerWordMotion', function()
   if _IsToggleQuickWords then
-	  vim.cmd[[
+    vim.cmd [[
 	  map <Plug>(smartword-basic-w)  w
 	  map <Plug>(smartword-basic-b)  b
 	  map <Plug>(smartword-basic-e)  e
 	  map <Plug>(smartword-basic-ge)  ge
 	  ]]
   else
-	  vim.cmd[[
+    vim.cmd [[
 	  map <Plug>(smartword-basic-w)  <Plug>WordMotion_w
 	  map <Plug>(smartword-basic-b)  <Plug>WordMotion_b
 	  map <Plug>(smartword-basic-e)  <Plug>WordMotion_e
@@ -105,7 +105,8 @@ vim.api.nvim_create_user_command('ToggleInnerWordMotion', function()
   _IsToggleQuickWords = not _IsToggleQuickWords
 end, {})
 
-vim.api.nvim_create_autocmd('ColorScheme', {pattern="*", callback = function () require('leap').init_highlight(true) end})
+vim.api.nvim_create_autocmd('ColorScheme', { pattern = "*",
+  callback = function() require('leap').init_highlight(true) end })
 
 local config = {
 
@@ -117,12 +118,31 @@ local config = {
 
   plugins = plugins,
 
+  updater = {
+    remote = "origin", -- remote to use
+    channel = "stable", -- "stable" or "nightly"
+    -- version = "latest", -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
+    -- branch = "v2", -- branch name (NIGHTLY ONLY)
+    -- commit = nil, -- commit hash (NIGHTLY ONLY)
+    -- pin_plugins = nil, -- nil, true, false (nil will pin plugins on stable only)
+    -- skip_prompts = false, -- skip prompts about breaking changes
+    -- show_changelog = true, -- show the changelog after performing an update
+    -- auto_reload = false, -- automatically reload and sync packer after a successful update
+    -- auto_quit = false, -- automatically quit the current session after a successful update
+    -- remotes = { -- easily add new remotes to track
+    --   ["remote_name"] = "https://remote_url.come/repo.git", -- full remote url
+    --   ["remote2"] = "github_user/repo", -- GitHub user/repo shortcut,
+    --   ["remote3"] = "github_user", -- GitHub user assume AstroNvim fork
+    -- },
+  },
+
   options = {
     g = {
-      do_legacy_filetype = 0,
+      -- do_legacy_filetype = 0,
       --do_filetype_lua = 1,
       --did_load_filetypes = 1,
-      catppuccin_flavour = 'mocha',
+      ts_highlight_lua = true,
+      catppuccin_flavour = catppuccin_flavour[4],
       gruvbox_flat_style = gruvbox_flat_style[2],
       tokyonight_style = tokyonight_style[1],
       gruvbox_material_background = gruvbox_material_background[2],
@@ -150,55 +170,50 @@ local config = {
 
     },
     opt = {
-      completeopt = {'menu', 'menuone', 'noselect'},
+      cmdheight = 1,
+      completeopt = { 'menu', 'menuone', 'noselect' },
     }
   },
 
   -- *** Polish ***
   polish = function()
     vim.opt.path:append('**/*')
-    vim.keymap.set({'i', 'c'}, '<c-v>', '<c-r>+', {})
+    vim.keymap.set({ 'i', 'c' }, '<c-v>', '<c-r>+', {})
     vim.api.nvim_create_user_command('ExModeEnter', function() vim.fn.feedkeys('gQ', 'n') end, {})
     vim.api.nvim_create_user_command('ExModeExit', function() vim.cmd 'visual' end, {})
     vim.cmd 'command! Redir Bufferize'
     -- vim.cmd [[xnoremap <leader>r <cmd>'<,'>so %<cr>]]
-    vim.cmd[[
+    vim.cmd [[
     augroup relative_num
         autocmd! InsertEnter * set norelativenumber
         autocmd! InsertLeave * set relativenumber
     augroup END
     ]]
-    vim.keymap.set('n', 'H', '<cmd>tabprev<cr>', {silent=true, noremap=true})
-    vim.keymap.set('n', 'L', '<cmd>tabnext<cr>', {silent=true, noremap=true})
+    vim.keymap.set('n', 'H', '<cmd>tabprev<cr>', { silent = true, noremap = true })
+    vim.keymap.set('n', 'L', '<cmd>tabnext<cr>', { silent = true, noremap = true })
     -- setup_cmd_output_history()
-    -- vim.api.nvim_create_user_command('Mark',
-    --   function()
-    --     local bufname = vim.api.nvim_buf_get_name(0)
-    --     require('harpoon.mark').add_file(bufname)
-    --   end, {})
-    -- vim.api.nvim_create_user_command('Harpoon', require('harpoon.ui').toggle_quick_menu, {})
 
-    local general_au = vim.api.nvim_create_augroup("general_au", {clear=true})
+    local general_au = vim.api.nvim_create_augroup("general_au", { clear = true })
     -- face un *blink* cand dau copy
     vim.api.nvim_create_autocmd('TextYankPost', {
       group = general_au,
       callback = function()
         -- vim.highlight.on_yank {higroup='TabLineSel', timeout=200}
-        vim.highlight.on_yank {higroup='Search', timeout=200}
+        vim.highlight.on_yank { higroup = 'Search', timeout = 200 }
       end,
     })
     vim.api.nvim_create_autocmd('FileType', {
-        group=general_au,
-        pattern='qf',
-        command='set nobuflisted'
+      group = general_au,
+      pattern = 'qf',
+      command = 'set nobuflisted'
     })
     vim.api.nvim_create_autocmd('FileType', {
-        group=general_au,
-        pattern={'qf', 'help', 'man', 'lspinfo'},
-        command='nnoremap <silent> <buffer> q <cmd>close<cr>'
+      group = general_au,
+      pattern = { 'qf', 'help', 'man', 'lspinfo' },
+      command = 'nnoremap <silent> <buffer> q <cmd>close<cr>'
     })
 
-    local PackerHooks = vim.api.nvim_create_augroup('PackerHooks', {clear=true})
+    local PackerHooks = vim.api.nvim_create_augroup('PackerHooks', { clear = true })
     vim.api.nvim_create_autocmd('User', {
       pattern = 'PackerCompileDone',
       callback = function()
@@ -207,7 +222,7 @@ local config = {
       group = PackerHooks,
     })
 
-    local this_file = 'C:/Users/BaraTudor/AppData/Local/nvim/lua/user/init.lua'--vim.fn.expand('<sfile>:p') --
+    local this_file = 'C:/Users/BaraTudor/AppData/Local/nvim/lua/user/init.lua' --vim.fn.expand('<sfile>:p') --
     vim.api.nvim_create_user_command(
       "EditUserConfig",
       "edit " .. this_file,
@@ -243,7 +258,7 @@ local config = {
       -- dap = false,
     },
 
-    setup = function ()
+    setup = function()
       ---@diagnostic disable-next-line: different-requires
       local cmp = require 'cmp'
 
@@ -274,16 +289,16 @@ local config = {
   --   server_registration = function(server, opts)
   --     local lspconfig = require('lspconfig')
   --     lspconfig[server].setup(opts)
-      -- if server == 'sumneko_lua' then
-      --   local dev = require('lua-dev').setup {
-      --     -- lspconfig = {
-      --     --   cmd = {'lua-language-server'},
-      --     -- },
-      --   }
-      --   lspconfig.sumneko_lua.setup(dev)
-      -- else
-      --   lspconfig[server].setup(opts)
-      -- end
+  -- if server == 'sumneko_lua' then
+  --   local dev = require('lua-dev').setup {
+  --     -- lspconfig = {
+  --     --   cmd = {'lua-language-server'},
+  --     -- },
+  --   }
+  --   lspconfig.sumneko_lua.setup(dev)
+  -- else
+  --   lspconfig[server].setup(opts)
+  -- end
   --   end,
   -- },
 }

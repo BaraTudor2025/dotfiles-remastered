@@ -43,8 +43,8 @@ local mappings = {
     -- toc-cross-files
     -- gi = {}
 
-    t = { function() print(vim.inspect(CmdHistoryList)) end },
-    T = { function() CmdHistoryList = {} end},
+    -- t = { function() print(vim.inspect(CmdHistoryList)) end },
+    -- T = { function() CmdHistoryList = {} end},
     -- ['<space>'] = {'<nop>'},
     [';'] = {':'},
     [':'] = {';'},
@@ -110,6 +110,10 @@ local mappings = {
     -- Yank Manager
     ['<leader>sy'] = { function() require('telescope').extensions.neoclip.default() end, desc = "Search yanks (p for paste)" },
     ['<leader>sq'] = { function() require('telescope').extensions.macroscope.default() end, desc = "Search macro history " },
+    ['<leader>mm'] = "<cmd>Harpoon<cr>",
+    ['<leader>ma'] = "<cmd>Mark<cr>",
+    ['<leader>mj'] = {function () require('harpoon.ui').nav_prev() end, desc = "Prev"},
+    ['<leader>mk'] = {function () require('harpoon.ui').nav_next() end, desc = "Next"},
 
     -- jump
     -- ['<leader>j'] = { cmd 'HopLineStartMW', desc = 'Jump to Line'},
@@ -125,6 +129,9 @@ local which_key = {
       n = {
         ["<leader>"] = {
           z = {name = 'True Zen'},
+          m = {
+            name="Harpoon",
+          },
         },
         f = 'search 1 char in window',
         s = 'search 2 chars in window',
