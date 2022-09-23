@@ -4,11 +4,11 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 [user]
-	name = Bara C. Tudor
+	name = "Bara C. Tudor"
 	email = vector2025@gmail.com
 [core]
 	#editor = \"C:\\Users\\BaraTudor\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\" --wait
-	editor = \"C:\\Users\\BaraTudor\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code\" --wait
+	#editor = \"C:\\Users\\BaraTudor\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code\" --wait
 	autocrlf = true
 	#pager = less #cat
 [alias]
@@ -120,12 +120,12 @@
 [difftool "meld.exe"]
 	cmd = meld.exe "$LOCAL" "$REMOTE"
 [difftool "vsdiffmerge"]
-	cmd = \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\vsdiffmerge.exe\" \"$LOCAL\" \"$REMOTE\" //t
+	#cmd = \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\vsdiffmerge.exe\" \"$LOCAL\" \"$REMOTE\" //t
 	keepBackup = false
 [mergetool]
 	prompt = true
 [mergetool "vsdiffmerge"]
-	cmd = \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\vsdiffmerge.exe\" \"$REMOTE\" \"$LOCAL\" \"$BASE\" \"$MERGED\" //m
+	#cmd = \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\vsdiffmerge.exe\" \"$REMOTE\" \"$LOCAL\" \"$BASE\" \"$MERGED\" //m
 	keepBackup = false
 	trustExitCode = true
 

@@ -1,5 +1,4 @@
 --
---
 -- *** CONFIGVRVM PERSONALISAETVM ***
 --
 
@@ -17,6 +16,23 @@ if vim.fn.exists('g:neovide') then
   -- vim.g.neovide_cursor_vfx_particle_lifetime=1.0
   -- vim.g.neovide_cursor_vfx_particle_density=7.0
   -- vim.g.neovide_cursor_vfx_particle_speed=10.0
+end
+
+---@param tbl table nested table
+---@param output? table optional value to assign the flattened result, if nil then return it
+---@return table # the flattened table
+function flatten_table(tbl, output)
+  local result = output or {}
+  for _, inner in ipairs(tbl) do
+    for k, v in pairs(inner) do
+      if type(k) == "number" then
+        table.insert(result, v) --['plugin.nvim'] = {...}
+      else
+        result[k] = v -- {'plugin.nvim', ...}
+      end
+    end
+  end
+  return result
 end
 
 local keys = require('user.keys')
@@ -84,29 +100,6 @@ $	last	x-n	n before x
 -- sky-=   blue
 
 --]]
-
-_IsToggleQuickWords = true
-vim.api.nvim_create_user_command('ToggleInnerWordMotion', function()
-  if _IsToggleQuickWords then
-    vim.cmd [[
-	  map <Plug>(smartword-basic-w)  w
-	  map <Plug>(smartword-basic-b)  b
-	  map <Plug>(smartword-basic-e)  e
-	  map <Plug>(smartword-basic-ge)  ge
-	  ]]
-  else
-    vim.cmd [[
-	  map <Plug>(smartword-basic-w)  <Plug>WordMotion_w
-	  map <Plug>(smartword-basic-b)  <Plug>WordMotion_b
-	  map <Plug>(smartword-basic-e)  <Plug>WordMotion_e
-	  map <Plug>(smartword-basic-ge)  <Plug>WordMotion_ge
-	  ]]
-  end
-  _IsToggleQuickWords = not _IsToggleQuickWords
-end, {})
-
-vim.api.nvim_create_autocmd('ColorScheme', { pattern = "*",
-  callback = function() require('leap').init_highlight(true) end })
 
 local config = {
 
@@ -178,58 +171,61 @@ local config = {
   -- *** Polish ***
   polish = function()
     vim.opt.path:append('**/*')
+    local diag_active = true
+    vim.keymap.set('n', '<leader>ll', function()
+      diag_active = not diag_active
+      if diag_active then
+        vim.diagnostic.show()
+      else
+        vim.diagnostic.hide()
+      end
+    end, {desc = "Toggle buffer Diagnostics" })
     vim.keymap.set({ 'i', 'c' }, '<c-v>', '<c-r>+', {})
+    vim.keymap.set({'n', 'v', 'o'}, ':', ';', {})
+    vim.keymap.set({'n', 'v', 'o'}, ';', ':', {})
+    vim.keymap.set('n', '<leader>r', '<cmd>SnipRun<cr>', {desc='Run Snippet'})
+    vim.keymap.set('v', '<leader>r', ':SnipRun<cr>', {desc='Run Snippet'})
+    vim.keymap.set('n', '<leader>R', '<cmd>SnipClose<cr>', {})
+    -- vim.api.nvim_create_user_command('Lua', function (tbl)
+      -- vim.pretty_print(vim.fn.luaeval())
+      -- vim.cmd("lua =" .. tbl.fargs)
+    -- end, {complete='lua', bang=true, nargs='*'})
+
     vim.api.nvim_create_user_command('ExModeEnter', function() vim.fn.feedkeys('gQ', 'n') end, {})
     vim.api.nvim_create_user_command('ExModeExit', function() vim.cmd 'visual' end, {})
+
+    vim.api.nvim_create_user_command('Sterm', function() require('sterm').toggle() end, {})
     vim.cmd 'command! Redir Bufferize'
     -- vim.cmd [[xnoremap <leader>r <cmd>'<,'>so %<cr>]]
-    vim.cmd [[
-    augroup relative_num
-        autocmd! InsertEnter * set norelativenumber
-        autocmd! InsertLeave * set relativenumber
-    augroup END
-    ]]
     vim.keymap.set('n', 'H', '<cmd>tabprev<cr>', { silent = true, noremap = true })
     vim.keymap.set('n', 'L', '<cmd>tabnext<cr>', { silent = true, noremap = true })
     -- setup_cmd_output_history()
 
-    local general_au = vim.api.nvim_create_augroup("general_au", { clear = true })
-    -- face un *blink* cand dau copy
-    vim.api.nvim_create_autocmd('TextYankPost', {
-      group = general_au,
-      callback = function()
-        -- vim.highlight.on_yank {higroup='TabLineSel', timeout=200}
-        vim.highlight.on_yank { higroup = 'Search', timeout = 200 }
-      end,
-    })
-    vim.api.nvim_create_autocmd('FileType', {
-      group = general_au,
-      pattern = 'qf',
-      command = 'set nobuflisted'
-    })
-    vim.api.nvim_create_autocmd('FileType', {
-      group = general_au,
-      pattern = { 'qf', 'help', 'man', 'lspinfo' },
-      command = 'nnoremap <silent> <buffer> q <cmd>close<cr>'
-    })
+    require('user.auto-commands')
+    _IsToggleQuickWords = true
+    vim.api.nvim_create_user_command('ToggleInnerWordMotion', function()
+        if _IsToggleQuickWords then
+          vim.cmd [[
+	        map <Plug>(smartword-basic-w)  w
+	        map <Plug>(smartword-basic-b)  b
+	        map <Plug>(smartword-basic-e)  e
+	        map <Plug>(smartword-basic-ge)  ge
+	        ]]
+        else
+          vim.cmd [[
+	        map <Plug>(smartword-basic-w)  <Plug>WordMotion_w
+	        map <Plug>(smartword-basic-b)  <Plug>WordMotion_b
+	        map <Plug>(smartword-basic-e)  <Plug>WordMotion_e
+	        map <Plug>(smartword-basic-ge)  <Plug>WordMotion_ge
+	        ]]
+        end
+        _IsToggleQuickWords = not _IsToggleQuickWords
+      end, {})
 
-    local PackerHooks = vim.api.nvim_create_augroup('PackerHooks', { clear = true })
-    vim.api.nvim_create_autocmd('User', {
-      pattern = 'PackerCompileDone',
-      callback = function()
-        vim.notify('Compile Done!', vim.log.levels.INFO, { title = 'Packer' })
-      end,
-      group = PackerHooks,
-    })
-
-    local this_file = 'C:/Users/BaraTudor/AppData/Local/nvim/lua/user/init.lua' --vim.fn.expand('<sfile>:p') --
-    vim.api.nvim_create_user_command(
-      "EditUserConfig",
-      "edit " .. this_file,
-      {}
-    )
-    -- declare_maps()
-  end,
+    vim.api.nvim_create_autocmd('ColorScheme', { pattern = "*",
+      callback = function() require('leap').init_highlight(true) end })
+        -- declare_maps()
+    end,
 
   -- *** cmp Config ***
   cmp = {
@@ -252,7 +248,7 @@ local config = {
       path = 260,
       -- fuzzy_path = 250,
 
-      cmdline = 1000,
+      cmdline = 500,
       cmdline_history = 10,
       -- calc = 400,
       -- dap = false,
@@ -268,9 +264,9 @@ local config = {
             mapping = cmp.mapping.preset.cmdline(),
             sources = cmp.config.sources(
               { { name = 'fuzzy_path' } },
-              -- { { name = 'cmdline' } },
+              { { name = 'cmdline' } }
               -- { { name = 'cmdline_history' } }
-              { { name = 'cmdline' }, { name = 'cmdline_history' } }
+              -- { { name = 'cmdline' }, { name = 'cmdline_history' } }
             ),
           },
 

@@ -13,6 +13,10 @@ local scripts = require('user.scripts')
 
 --- *** REMINTER <c-o> pentru Normal-Insert ***
 
+-- use [I for <cword> search  si dupa selecteaza la care dai jump
+-- :map <F4> [I:let nr = input("Which one: ")<Bar>exe "normal " .. nr .. "[\t"<CR>
+
+_BaraHlSet = nil
 -- *** Mappings ***
 local mappings = {
   i = {
@@ -23,15 +27,20 @@ local mappings = {
     -- Y = { '"Ayy' },
 
     -- Run Selection
-    ["<leader>r"] = {scripts.run_lua_selection, desc="Run Lua Selection"},
+    -- ["<leader>r"] = {scripts.run_lua_selection, desc="Run Lua Selection"},
   },
   n = {
+    -- invert mark and register keys
+    -- ["'"] = {'"', noremap=false},
+    -- ['"'] = {"'", noremap=false},
     ['<c-cr>'] = {"m'i<CR><Esc>`'"},
     zh = {cmd 'HydraSideScroll', desc='Hydra Side Scroll'},
     zl = {cmd 'HydraSideScroll', desc='Hydra Side Scroll'},
     zH = {cmd 'HydraSideScroll', desc='Hydra Side Scroll'},
     zL = {cmd 'HydraSideScroll', desc='Hydra Side Scroll'},
 
+    gh = {'^', desc = 'Goto Beginning of Line'},
+    gl = {'$', desc = 'Goto End of Line'},
     go = { scripts.custom_toc, desc = 'Show ** TOC ** for this file' },
     gm = {
       function ()
@@ -46,8 +55,6 @@ local mappings = {
     -- t = { function() print(vim.inspect(CmdHistoryList)) end },
     -- T = { function() CmdHistoryList = {} end},
     -- ['<space>'] = {'<nop>'},
-    [';'] = {':'},
-    [':'] = {';'},
     ['<leader>c'] = { cmd 'Bdelete', desc = 'Buffer Del' },
     -- ['<c-/>'] = { '<leader>/', remap = true},
 
@@ -106,6 +113,8 @@ local mappings = {
     ['<M-k>'] = { '<c-b>', remap = true},
     ['<M-d>'] = { '<c-d>', remap = true},
     ['<M-u>'] = { '<c-u>', remap = true},
+
+    ['<leader>H'] = { ':set hlsearch<cr>', desc = "Enable Highlight" },
 
     -- Yank Manager
     ['<leader>sy'] = { function() require('telescope').extensions.neoclip.default() end, desc = "Search yanks (p for paste)" },

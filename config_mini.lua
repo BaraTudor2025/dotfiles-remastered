@@ -12,7 +12,7 @@ vim.api.nvim_create_user_command('Bdelete', function() MiniBufremove.delete() en
 require('mini.indentscope').setup{
   draw = {
     delay = 0,
-    animation = require('mini.indentscope').gen_animation('none'),
+    animation = require('mini.indentscope').gen_animation('none', {}),
   },
   options = {
     try_as_border = true,
@@ -38,7 +38,6 @@ vim.g.miniindentscope_disable = true
 -- require('mini.trailspace').setup{}
 
 -- require('mini.tabline').setup{}
-require('mini.statusline').setup{}
 
 require('mini.jump').setup{}
 
