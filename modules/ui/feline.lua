@@ -19,7 +19,11 @@ feline_to_heirline = function(fe)
     local _exp_0 = type(heir.feline[args.prop])
     if 'nil' == _exp_0 then
       return nil
-    elseif 'boolean' == _exp_0 or 'string' == _exp_0 then
+    elseif 'boolean' == _exp_0 then
+      return function(self)
+        return self.feline[args.prop]
+      end
+    elseif 'string' == _exp_0 then
       return function(self)
         return self.feline[args.prop]
       end

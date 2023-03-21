@@ -2,23 +2,23 @@
 --   MINI CONFIG
 --]]
 
-require('mini.ai').setup{}
+-- require('mini.ai').setup{}
 
-require('mini.bufremove').setup{}
--- NOTE: + buffer 'unshow_[in_window]'
-vim.api.nvim_create_user_command('Bdelete', function() MiniBufremove.delete() end, {})
+-- require("mini.bufremove").setup {}
+-- -- NOTE: + buffer 'unshow_[in_window]'
+-- vim.api.nvim_create_user_command("Bdelete", function() MiniBufremove.delete() end, {})
 
 -- require('mini.cursorword').setup{}
-require('mini.indentscope').setup{
-  draw = {
-    delay = 0,
-    animation = require('mini.indentscope').gen_animation('none', {}),
-  },
-  options = {
-    try_as_border = true,
-  },
-}
-vim.g.miniindentscope_disable = true
+-- require("mini.indentscope").setup {
+--   draw = {
+--     delay = 0,
+--     animation = require("mini.indentscope").gen_animation("none", {}),
+--   },
+--   options = {
+--     try_as_border = true,
+--   },
+-- }
+-- vim.g.miniindentscope_disable = true
 
 -- require('mini.surround').setup{
 --   mappings = {
@@ -39,7 +39,7 @@ vim.g.miniindentscope_disable = true
 
 -- require('mini.tabline').setup{}
 
-require('mini.jump').setup{}
+-- require("mini.jump").setup {}
 
 -- require('mini.comment').setup{}
 -- require('mini.pairs').setup{}

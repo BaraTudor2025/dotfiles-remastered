@@ -1,17 +1,24 @@
 --
 -- *** CONFIGVRVM PERSONALISAETVM ***
 --
+-- if true then return {} end
 
-if vim.fn.exists('g:neovide') then
+vim.keymap.set({ "n", "v", "o" }, ":", ";", {})
+vim.keymap.set({ "n", "v", "o" }, ";", ":", {})
+
+if vim.fn.exists "g:neovide" then
   vim.g.neovide_remember_window_size = true
-
-  -- vim.g.neovide_scroll_animation_length = 0.2 --def=0.3
-
-  -- vim.g.neovide_cursor_antialiasing = true --default=true
   vim.g.neovide_cursor_animation_length = 0 --secunde, def=0.13
   vim.g.neovide_cursor_trail_length = 0 --def=0.8
 
-  -- vim.g.neovide_cursor_vfx_mode = "pixiedust"
+  -- vim.g.neovide_scroll_animation_length = 0
+  -- vim.g.neovide_scroll_animation_length = 0.2 --def=0.3
+
+  -- vim.g.neovide_cursor_antialiasing = true --default=true
+  -- vim.g.neovide_cursor_animation_length = 0.13 --secunde, def=0.13
+  -- vim.g.neovide_cursor_trail_length = 0.8 --def=0.8
+
+  vim.g.neovide_cursor_vfx_mode = "pixiedust"
   -- vim.g.neovide_cursor_vfx_opacity=200.0
   -- vim.g.neovide_cursor_vfx_particle_lifetime=1.0
   -- vim.g.neovide_cursor_vfx_particle_density=7.0
@@ -35,36 +42,46 @@ function flatten_table(tbl, output)
   return result
 end
 
-local keys = require('user.keys')
-local plugins = require('user.plugins')
+local function readFileSync(path)
+  local uv = vim.loop
+  local fd = assert(uv.fs_open(path, "r", 438))
+  local stat = assert(uv.fs_fstat(fd))
+  local data = assert(uv.fs_read(fd, stat.size, 0))
+  assert(uv.fs_close(fd))
+  return data
+end
+
+local maps = require "user.maps"
+local plugins = require "user.plugins"
 
 local tokyonight_style = {
-  'storm',
-  'night',
-  'day',
+  "storm",
+  "night",
+  "day",
 }
 
 local catppuccin_flavour = {
-  'latte',
-  'frappe',
-  'macchiato',
-  'mocha',
+  "latte",
+  "frappe",
+  "macchiato",
+  "mocha",
 }
 local gruvbox_flat_style = {
-  '', --default
-  'dark',
-  'hard',
+  "", --default
+  "dark",
+  "hard",
 }
 local gruvbox_material_background = {
-  'soft',
-  'medium',
-  'hard',
+  "soft",
+  "medium",
+  "hard",
 }
 local gruvbox_material_foreground = {
-  'material',
-  'mix',
-  'original',
+  "material",
+  "mix",
+  "original",
 }
+
 -- mai multe culor, vezi :help
 local gruvbox_material_menu_selection_background = {}
 local gruvbox_material_visual = {}
@@ -95,46 +112,29 @@ $	last	x-n	n before x
 +n	n forward	 -n previous context
 %	1,$
 
--- apple   =red
--- grass+=green
--- sky-=   blue
-
 --]]
+
+local ok, last_color = pcall(require, "last-color")
+local theme = "kanagawa"
+if ok then theme = last_color.recall() or theme end
 
 local config = {
 
-  colorscheme = "kanagawa",
-
+  colorscheme = theme,
   -- set key-maps
-  mappings = keys.mappings,
-  ["which-key"] = keys.which_key,
+  mappings = maps.mappings,
+  ["which-key"] = maps.which_key,
 
   plugins = plugins,
 
   updater = {
     remote = "origin", -- remote to use
     channel = "stable", -- "stable" or "nightly"
-    -- version = "latest", -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
-    -- branch = "v2", -- branch name (NIGHTLY ONLY)
-    -- commit = nil, -- commit hash (NIGHTLY ONLY)
-    -- pin_plugins = nil, -- nil, true, false (nil will pin plugins on stable only)
-    -- skip_prompts = false, -- skip prompts about breaking changes
-    -- show_changelog = true, -- show the changelog after performing an update
-    -- auto_reload = false, -- automatically reload and sync packer after a successful update
-    -- auto_quit = false, -- automatically quit the current session after a successful update
-    -- remotes = { -- easily add new remotes to track
-    --   ["remote_name"] = "https://remote_url.come/repo.git", -- full remote url
-    --   ["remote2"] = "github_user/repo", -- GitHub user/repo shortcut,
-    --   ["remote3"] = "github_user", -- GitHub user assume AstroNvim fork
-    -- },
   },
 
   options = {
     g = {
-      -- do_legacy_filetype = 0,
-      --do_filetype_lua = 1,
-      --did_load_filetypes = 1,
-      ts_highlight_lua = true,
+      -- ts_highlight_lua = true,
       catppuccin_flavour = catppuccin_flavour[4],
       gruvbox_flat_style = gruvbox_flat_style[2],
       tokyonight_style = tokyonight_style[1],
@@ -148,84 +148,88 @@ local config = {
       -- shellslash = true,
       ruler = false,
       foldenable = true,
-      background = 'dark',
+      background = "dark",
       -- autochdir = true,
-      cdpath = '**/*',
+      cdpath = "**/*",
       undofile = false,
-      mouse = 'a',
+      mouse = "a",
       wildmenu = true,
       gdefault = true,
-      guifont = "CaskaydiaCove NF:h13"
+      guifont = "FiraCode Nerd Font Mono:h10",
+      -- guifont = "CaskaydiaCove NF:h13"
       -- guifont = "FiraCode NF,Cascadia Code:h13",
       -- guifont = "DejaVuSansMono NF:h12",
       --guifont=Consolas:h14
       --guifont=Cascadia\ Code:h14
-
     },
     opt = {
+      -- backspace = { "indent", "eol" },
       cmdheight = 1,
-      completeopt = { 'menu', 'menuone', 'noselect' },
-    }
+      completeopt = { "menu", "menuone", "noselect" },
+    },
+  },
+  lsp = {
+    mappings = {
+      n = {
+        ["gl"] = false,
+      },
+    },
   },
 
   -- *** Polish ***
   polish = function()
-    vim.opt.path:append('**/*')
+    local config_path = vim.fn.stdpath "config" .. "/lua/user/"
+    -- vim.cmd("AniseedEvalFile " .. config_path .. "fennel-au.fnl")
+    require("aniseed.eval").str(readFileSync(config_path .. "fennel-au.fnl"))
+    vim.cmd [[let maplocalleader=","]]
     local diag_active = true
-    vim.keymap.set('n', '<leader>ll', function()
+    vim.keymap.set("n", "<leader>ll", function()
       diag_active = not diag_active
       if diag_active then
         vim.diagnostic.show()
       else
         vim.diagnostic.hide()
       end
-    end, {desc = "Toggle buffer Diagnostics" })
-    vim.keymap.set({ 'i', 'c' }, '<c-v>', '<c-r>+', {})
-    vim.keymap.set({'n', 'v', 'o'}, ':', ';', {})
-    vim.keymap.set({'n', 'v', 'o'}, ';', ':', {})
-    vim.keymap.set('n', '<leader>r', '<cmd>SnipRun<cr>', {desc='Run Snippet'})
-    vim.keymap.set('v', '<leader>r', ':SnipRun<cr>', {desc='Run Snippet'})
-    vim.keymap.set('n', '<leader>R', '<cmd>SnipClose<cr>', {})
-    -- vim.api.nvim_create_user_command('Lua', function (tbl)
-      -- vim.pretty_print(vim.fn.luaeval())
-      -- vim.cmd("lua =" .. tbl.fargs)
-    -- end, {complete='lua', bang=true, nargs='*'})
+    end, { desc = "Toggle buffer Diagnostics" })
 
-    vim.api.nvim_create_user_command('ExModeEnter', function() vim.fn.feedkeys('gQ', 'n') end, {})
-    vim.api.nvim_create_user_command('ExModeExit', function() vim.cmd 'visual' end, {})
+    vim.keymap.set({ "i", "c" }, "<c-v>", "<c-r>+", {})
+    vim.keymap.set("v", ".", ":normal .<cr>")
+    vim.keymap.set({ "n", "v", "o" }, ":", ";", {})
+    vim.keymap.set({ "n", "v", "o" }, ";", ":", {})
+    vim.keymap.set("n", "<leader>r", "<cmd>SnipRun<cr>", { desc = "Run Snippet" })
+    vim.keymap.set("v", "<leader>r", ":SnipRun<cr>", { desc = "Run Snippet" })
+    vim.keymap.set("n", "<leader>R", "<cmd>SnipClose<cr>", {})
 
-    vim.api.nvim_create_user_command('Sterm', function() require('sterm').toggle() end, {})
-    vim.cmd 'command! Redir Bufferize'
     -- vim.cmd [[xnoremap <leader>r <cmd>'<,'>so %<cr>]]
-    vim.keymap.set('n', 'H', '<cmd>tabprev<cr>', { silent = true, noremap = true })
-    vim.keymap.set('n', 'L', '<cmd>tabnext<cr>', { silent = true, noremap = true })
-    -- setup_cmd_output_history()
+    vim.keymap.set("n", "H", "<cmd>tabprev<cr>", { silent = true, noremap = true })
+    vim.keymap.set("n", "L", "<cmd>tabnext<cr>", { silent = true, noremap = true })
 
-    require('user.auto-commands')
-    _IsToggleQuickWords = true
-    vim.api.nvim_create_user_command('ToggleInnerWordMotion', function()
-        if _IsToggleQuickWords then
-          vim.cmd [[
-	        map <Plug>(smartword-basic-w)  w
-	        map <Plug>(smartword-basic-b)  b
-	        map <Plug>(smartword-basic-e)  e
-	        map <Plug>(smartword-basic-ge)  ge
-	        ]]
-        else
-          vim.cmd [[
-	        map <Plug>(smartword-basic-w)  <Plug>WordMotion_w
-	        map <Plug>(smartword-basic-b)  <Plug>WordMotion_b
-	        map <Plug>(smartword-basic-e)  <Plug>WordMotion_e
-	        map <Plug>(smartword-basic-ge)  <Plug>WordMotion_ge
-	        ]]
-        end
-        _IsToggleQuickWords = not _IsToggleQuickWords
-      end, {})
+    -- _IsToggleQuickWords = true
+    -- vim.api.nvim_create_user_command("ToggleInnerWordMotion", function()
+    --   if _IsToggleQuickWords then
+    --     vim.cmd [[
+    --      map <Plug>(smartword-basic-w)  w
+    --      map <Plug>(smartword-basic-b)  b
+    --      map <Plug>(smartword-basic-e)  e
+    --      map <Plug>(smartword-basic-ge)  ge
+    --      ]]
+    --   else
+    --     vim.cmd [[
+    --      map <Plug>(smartword-basic-w)  <Plug>WordMotion_w
+    --      map <Plug>(smartword-basic-b)  <Plug>WordMotion_b
+    --      map <Plug>(smartword-basic-e)  <Plug>WordMotion_e
+    --      map <Plug>(smartword-basic-ge)  <Plug>WordMotion_ge
+    --      ]]
+    --   end
+    --   _IsToggleQuickWords = not _IsToggleQuickWords
+    -- end, {})
 
-    vim.api.nvim_create_autocmd('ColorScheme', { pattern = "*",
-      callback = function() require('leap').init_highlight(true) end })
-        -- declare_maps()
-    end,
+    -- vim.api.nvim_create_autocmd(
+    --   "ColorScheme",
+    --   { pattern = "*", callback = function() require("leap").init_highlight(true) end }
+    -- )
+    -- declare_maps()
+  end,
 
   -- *** cmp Config ***
   cmp = {
@@ -234,51 +238,42 @@ local config = {
       -- nvim_lua = DisableLuaDev and 1000 or 1,
       -- nvim_lsp = DisableLuaDev and 950 or 1000,
       nvim_lua = false,
-      nvim_lsp = 1000,
+      nvim_lsp = 900,
 
+      conjure = 910,
       luasnip = 750,
 
       -- neorg = 700,
       buffer = 500,
-      -- fuzzy_buffer = 500,
 
       emoji = 400,
       greek = 400,
 
       path = 260,
-      -- fuzzy_path = 250,
 
       cmdline = 500,
-      cmdline_history = 10,
-      -- calc = 400,
-      -- dap = false,
     },
 
     setup = function()
       ---@diagnostic disable-next-line: different-requires
-      local cmp = require 'cmp'
+      local cmp = require "cmp"
 
       return {
         cmdline = {
-          [':'] = {
+          [":"] = {
             mapping = cmp.mapping.preset.cmdline(),
-            sources = cmp.config.sources(
-              { { name = 'fuzzy_path' } },
-              { { name = 'cmdline' } }
-              -- { { name = 'cmdline_history' } }
-              -- { { name = 'cmdline' }, { name = 'cmdline_history' } }
-            ),
+            sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
           },
 
-          ['/'] = {
+          ["/"] = {
             mapping = cmp.mapping.preset.cmdline(),
             sources = {
-              { name = 'fuzzy_buffer' },
+              { name = "buffer" },
             },
-          }
-        }
+          },
+        },
       }
-    end
+    end,
   },
 
   -- lsp = {
