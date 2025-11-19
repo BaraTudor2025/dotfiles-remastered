@@ -3,13 +3,14 @@
 -- This guarantees that the specs are processed before any user plugins.
 
 ---@type LazySpec
+
 return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.pack.lua" },
   -- { import = "astrocommunity.motion.leap-nvim" },
   { import = "astrocommunity.motion.flit-nvim" },
   { import = "astrocommunity.motion.mini-ai" },
-  { import = "astrocommunity.edition-support.dial-nvim" },
+  { import = "astrocommunity.editing-support.dial-nvim" },
   -- { import = "astrocommunity.recipes.vscode" },
   -- import/override with your plugins folder
 }

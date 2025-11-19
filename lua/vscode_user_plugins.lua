@@ -49,6 +49,7 @@ vim.tbl_map(function(plugin) enabled[plugin] = true end, {
 })
 
 local Config = require "lazy.core.config"
+vim.cmd "set nomodeline"
 -- disable plugin update checking
 Config.options.checker.enabled = false
 Config.options.change_detection.enabled = false
