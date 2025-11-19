@@ -1,0 +1,115 @@
+{
+    "python.pythonPath": "C:\\Users\\BaraTudor\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook",
+        "*.trx": "default",
+        "git-rebase-todo": "gitlens.rebase"
+    },
+    "workbench.localHistory.enabled": false,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "python.defaultInterpreterPath": "C:\\Python311\\python.exe",
+    "[dart]": {
+        "editor.formatOnSave": false,
+        "editor.formatOnType": false,
+        "editor.selectionHighlight": false,
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": "off"
+    },
+    "[python]": {
+        "diffEditor.ignoreTrimWhitespace": true
+    },
+    "security.workspace.trust.enabled": false,
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.smoothScrolling": true,
+    "git.autofetch": true,
+    "files.exclude": {
+        "**/.DS_Store": true,
+        "**/.git": true,
+        "**/.hg": true,
+        "**/.svn": true,
+        "**/*.c.i": true,
+        "**/*.h.i": true,
+        "**/*.olean": true,
+        "**/CVS": true,
+        "**/Thumbs.db": true
+    },
+    "vscode-neovim.textDecorationsAtTop": true,
+    "vscode-neovim.revealCursorScrollLine": true,
+    "vscode-neovim.useCtrlKeysForInsertMode": false,
+    "vscode-neovim.compositeKeys": {
+        "jk": {
+            "command": "vscode-neovim.escape",
+            "args": []
+        }
+    },
+    "editor.inlineSuggest.enabled": true,
+    "notebook.output.textLineLimit": 50,
+    "cargo.automaticCheck": false,
+    "haskell.manageHLS": "PATH",
+    "Lua.telemetry.enable": false,
+    "vscode-office.openOutline": true,
+    "terminal.integrated.commandsToSkipShell": [
+        "language-julia.interrupt"
+    ],
+    "julia.symbolCacheDownload": true,
+    "julia.enableTelemetry": false,
+    "editor.cursorBlinking": "solid",
+    "git.autoStash": true,
+    "editor.lightbulb.enabled": "off",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "cmake.showOptionsMovedNotification": false,
+    "[lua]": {
+        "editor.indentSize": 2,
+        "editor.quickSuggestions": {
+            "comments": "inline",
+            "other": "on",
+            "strings": "on"
+        },
+        "editor.semanticHighlighting.enabled": true
+    },
+    "git.openRepositoryInParentFolders": "never",
+    "git.replaceTagsWhenPull": true,
+    "diffEditor.ignoreTrimWhitespace": true,
+    "security.allowedUNCHosts": [
+        "wsl.localhost"
+    ],
+    "cmake.pinnedCommands": [
+        "workbench.action.tasks.configureTaskRunner",
+        "workbench.action.tasks.runTask"
+    ],
+    "Lua.workspace.checkThirdParty": "",
+    "gitlens.currentLine.scrollable": false,
+    "gitlens.codeLens.enabled": false,
+    "gitlens.currentLine.enabled": false,
+    "C_Cpp.files.exclude": {
+        "**/*.c.i": true,
+        "**/*.h.i": true,
+        "**/.vscode": true,
+        "**/.vs": true
+    },
+    "C_Cpp.exclusionPolicy": "checkFilesAndFolders",
+    "makefile.configureOnOpen": true,
+    "terminal.explorerKind": "external",
+    "haskell.plugin.hlint.config.flags": [
+        
+    ],
+    "jupyter.askForKernelRestart": false,
+    "jdk.jdkhome": "c:\\Users\\BaraTudor\\Documents\\Facultate\\Master-AI-poli-2\\SchedulingAlgorithmsIBD\\OpenJDK-23",
+    "explorer.confirmDelete": false,
+    "workbench.colorTheme": "Kanagawa",
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "files.associations": {
+        "*.csv": "csv"
+    },
+    "python.analysis.typeCheckingMode": "standard",
+}

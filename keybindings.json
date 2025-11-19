@@ -1,0 +1,93 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    {
+        "key": "ctrl+'",
+        "command": "python.execInTerminal"
+    },
+
+    { // tree-surfer
+        "command": "vscode-neovim.send",
+        "key": "alt+h",
+        "when": "editorTextFocus && neovim.mode == normal",
+        "args": "<M-h>"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "alt+j",
+        "when": "editorTextFocus && neovim.mode == normal",
+        "args": "<M-j>"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "alt+k",
+        "when": "editorTextFocus && neovim.mode == normal",
+        "args": "<M-k>"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "alt+l",
+        "when": "editorTextFocus && neovim.mode == normal",
+        "args": "<M-l>"
+    },
+
+    { // tree-surfer
+        "command": "vscode-neovim.send",
+        "key": "alt+j",
+        "when": "editorTextFocus && neovim.mode == visual",
+        "args": "<M-j>"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "alt+k",
+        "when": "editorTextFocus && neovim.mode == visual",
+        "args": "<M-k>"
+    },
+
+    { // tree-surfer
+        "command": "vscode-neovim.send",
+        "key": "alt+k",
+        "when": "editorTextFocus && neovim.mode == visual",
+        "args": "<M-k>"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "alt+k",
+        "when": "editorTextFocus && neovim.mode == visual",
+        "args": "<M-k>"
+    },
+
+
+    { // yank-stack
+        "command": "vscode-neovim.send",
+        "key": "alt+p",
+        "when": "editorTextFocus && neovim.mode == normal",
+        "args": "<M-p>"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "alt+P",
+        "when": "editorTextFocus && neovim.mode == normal",
+        "args": "<M-P>"
+    },
+    {
+        "key": "ctrl+c",
+        "command": "-vscode-neovim.escape",
+        "when": "editorTextFocus && neovim.ctrlKeysInsert.c && neovim.init && neovim.mode != 'normal' && editorLangId not in 'neovim.editorLangIdExclusions'"
+    },
+    {
+        "key": "ctrl+c",
+        "command": "-vscode-neovim.escape",
+        "when": "editorTextFocus && neovim.ctrlKeysNormal.c && neovim.init && !dirtyDiffVisible && !findWidgetVisible && !inReferenceSearchEditor && !markersNavigationVisible && !notebookCellFocused && !notificationCenterVisible && !parameterHintsVisible && !referenceSearchVisible && neovim.mode == 'normal' && editorLangId not in 'neovim.editorLangIdExclusions'"
+    },
+    {
+        "key": "ctrl+a",
+        "command": "-vscode-neovim.send",
+        "when": "editorTextFocus && neovim.ctrlKeysNormal.a && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+    },
+    {
+        "key": "ctrl+a",
+        "command": "-vscode-neovim.send",
+        "when": "editorTextFocus && neovim.ctrlKeysInsert.a && neovim.init && neovim.mode == 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+    },
+
+]
